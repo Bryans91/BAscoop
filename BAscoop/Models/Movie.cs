@@ -18,9 +18,5 @@ namespace BAscoop.Models
         public virtual List<Performance> PerformanceList { get; set; }
 
 
-        /* collectie met date/time? */
-
-
-
     }
 }
