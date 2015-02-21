@@ -19,10 +19,7 @@ namespace BAscoop.Models
         public DbSet<Discount> Discounts { get; set; }
         public DbSet<Guest> Guests { get; set; }
         public DbSet<Movie> Movies { get; set; }
-        public DbSet<Popcorntime> Popcorntimes { get; set; }
         public DbSet<Performance> PerformanceList { get; set; }
-
-
 
     }
 }
