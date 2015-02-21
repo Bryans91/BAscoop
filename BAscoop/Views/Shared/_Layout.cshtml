@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />    
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="/Content/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/Content/bootstrap-theme.css" />
+</head>
+<body style="background-color:lightsteelblue">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                    </button>
+                    <div class="navbar-brand">@Html.ActionLink("BAbioscoop", "Index", "Home")</div>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Movies", "Index", "Movie")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                    </ul>
+                    <section class="nav navbar-right" id="login">
+                        @Html.Partial("_LoginPartial")
+                    </section>
+                </div>
+            </div>
+        </nav>
+    <div class="container bs-docs-container">
+        <div class="col-sm-12" role="banner">
+            @RenderSection("featured", required: false)
+        </div>
+        <div class="col-md-12" role="main">
+            @RenderBody()
+        </div>
+    </div>    
+    @RenderSection("Scripts", required: false)
+    <script src="~/Scripts/bootstrap.js"></script>
+</body>
+</html>
