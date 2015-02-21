@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BAscoop.Models.Booking>
+﻿@model BAbioscoop.Models.Booking
 
 @{
     ViewBag.Title = "Index";
@@ -6,58 +6,71 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nrOfTickets)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.accountNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.totalPrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.adres)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.city)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.postal)
-        </th>
-        <th></th>
-    </tr>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nrOfTickets)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.accountNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.totalPrice)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.adres)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.city)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.postal)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
+    <fieldset>
+        <legend>Booking</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.nrOfTickets)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.nrOfTickets)
+            @Html.ValidationMessageFor(model => model.nrOfTickets)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.accountNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.accountNumber)
+            @Html.ValidationMessageFor(model => model.accountNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.totalPrice)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.totalPrice)
+            @Html.ValidationMessageFor(model => model.totalPrice)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.adres)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.adres)
+            @Html.ValidationMessageFor(model => model.adres)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.city)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.city)
+            @Html.ValidationMessageFor(model => model.city)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.postal)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.postal)
+            @Html.ValidationMessageFor(model => model.postal)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
 }
 
-</table>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

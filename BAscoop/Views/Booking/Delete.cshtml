@@ -1,4 +1,4 @@
-﻿@model BAscoop.Models.Booking
+﻿@model BAbioscoop.Models.Booking
 
 @{
     ViewBag.Title = "Delete";
@@ -7,66 +7,55 @@
 <h2>Delete</h2>
 
 <h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Booking</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.nrOfTickets)
-        </dt>
+<fieldset>
+    <legend>Booking</legend>
 
-        <dd>
-            @Html.DisplayFor(model => model.nrOfTickets)
-        </dd>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.nrOfTickets)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.nrOfTickets)
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.accountNumber)
-        </dt>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.accountNumber)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.accountNumber)
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.accountNumber)
-        </dd>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.totalPrice)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.totalPrice)
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.totalPrice)
-        </dt>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.adres)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.adres)
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.totalPrice)
-        </dd>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.city)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.city)
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.adres)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.adres)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.city)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.city)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.postal)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.postal)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
-</div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.postal)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.postal)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
