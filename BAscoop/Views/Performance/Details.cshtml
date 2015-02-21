@@ -1,0 +1,42 @@
+﻿@model BAscoop.Models.Performance
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Performance</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cinemaroom.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cinemaroom.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Movie.title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Movie.title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StartTijd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StartTijd)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.PerformanceId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
