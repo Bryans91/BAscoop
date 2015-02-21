@@ -160,6 +160,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BookingController.cs" />
+    <Compile Include="Controllers\BookingController2.cs" />
+    <Compile Include="Controllers\BookingInformationViewModel.cs" />
     <Compile Include="Controllers\DiscountController.cs" />
     <Compile Include="Controllers\GuestController.cs" />
     <Compile Include="Controllers\HomeController.cs">
@@ -243,11 +245,6 @@
     <Content Include="Views\Discount\Details.cshtml" />
     <Content Include="Views\Discount\Edit.cshtml" />
     <Content Include="Views\Discount\Index.cshtml" />
-    <Content Include="Views\Booking\Create.cshtml" />
-    <Content Include="Views\Booking\Delete.cshtml" />
-    <Content Include="Views\Booking\Details.cshtml" />
-    <Content Include="Views\Booking\Edit.cshtml" />
-    <Content Include="Views\Booking\Index.cshtml" />
     <Content Include="Views\Guest\Create.cshtml" />
     <Content Include="Views\Guest\Delete.cshtml" />
     <Content Include="Views\Guest\Details.cshtml" />
@@ -271,6 +268,17 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Booking\Create.cshtml" />
+    <Content Include="Views\Booking\Delete.cshtml" />
+    <Content Include="Views\Booking\Details.cshtml" />
+    <Content Include="Views\Booking\Edit.cshtml" />
+    <Content Include="Views\Booking\FirstStep.cshtml" />
+    <Content Include="Views\Booking\Index.cshtml" />
+    <Content Include="Views\BookingController2\Create.cshtml" />
+    <Content Include="Views\BookingController2\Delete.cshtml" />
+    <Content Include="Views\BookingController2\Details.cshtml" />
+    <Content Include="Views\BookingController2\Edit.cshtml" />
+    <Content Include="Views\BookingController2\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

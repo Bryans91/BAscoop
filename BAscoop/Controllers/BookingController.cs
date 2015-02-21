@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BAscoop.Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -6,20 +7,53 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using BAscoop.Models;
 
 namespace BAscoop.Controllers
 {
     public class BookingController : Controller
     {
+        //
+        // GET: /Booking/
         private BioscoopDb db = new BioscoopDb();
 
-        // GET: /Booking/
-        public ActionResult Index()
+        public ActionResult FirstStep(int performanceId)
         {
-            return View(db.Bookings.ToList());
+            BookingInformationViewModel vm = new BookingInformationViewModel();
+
+            using (var context = new BioscoopDb())
+            {
+                vm.Performance = context.PerformanceList.Single(p => p.PerformanceId == performanceId);
+            }
+
+            Session["booking"] = vm;
+
+
+            return View(vm);
         }
 
+        [HttpPost]
+        public ActionResult SecondStep(BookingInformationViewModel vm)
+        {
+            BookingInformationViewModel oudeVM = Session["booking"] as BookingInformationViewModel;
+            oudeVM.AantalMensen = vm.AantalMensen;
+            Session["booking"] = oudeVM;
+
+            Booking booking = new Booking();
+
+            return View();
+        }
+
+        
+
+
+        public ActionResult Index()
+        {
+
+            List<Booking> booking = db.Bookings.ToList();
+            return View(booking);
+        }
+
+        //
         // GET: /Booking/Details/5
         public ActionResult Details(int? id)
         {
@@ -35,31 +69,72 @@ namespace BAscoop.Controllers
             return View(booking);
         }
 
+        //
         // GET: /Booking/Create
-        public ActionResult Create()
+
+        public ActionResult Create(int? movieId)
         {
-            return View();
+            return View(movieId);
         }
 
+        //
         // POST: /Booking/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="id,nrOfTickets,accountNumber,totalPrice,adres,city,postal")] Booking booking)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Bookings.Add(booking);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
+        [HttpPost]
+        public ActionResult Create([Bind(Include = "nrOfTickets, accountNumber, totalPrice, adres, city, postal")]Booking booking)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Bookings.Add(booking);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            catch (System.Data.DataException /* dex */)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            }
             return View(booking);
         }
+
+
+
+        //Edit post
+        [HttpPost, ActionName("Edit")]
+        public ActionResult EditPost(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var bookingToUpdate = db.Bookings.Find(id);
+            if (TryUpdateModel(bookingToUpdate, "",
+               new string[] { "nrOfTickets", "accountNumber", "totalPrice", "adres","city","postal" }))
+            {
+                try
+                {
+                    db.Entry(bookingToUpdate).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                catch (DataException /* dex */)
+                {
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                }
+            }
+            return View(bookingToUpdate);
+        }
+
+        //
 
         // GET: /Booking/Edit/5
-        public ActionResult Edit(int? id)
+
+        public ActionResult Edit(int id)
         {
             if (id == null)
             {
@@ -70,31 +145,21 @@ namespace BAscoop.Controllers
             {
                 return HttpNotFound();
             }
+
             return View(booking);
         }
 
-        // POST: /Booking/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="id,nrOfTickets,accountNumber,totalPrice,adres,city,postal")] Booking booking)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(booking).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(booking);
-        }
-
+        //
         // GET: /Booking/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int? id, bool? saveChangesError = false)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            if (saveChangesError.GetValueOrDefault())
+            {
+                ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
             }
             Booking booking = db.Bookings.Find(id);
             if (booking == null)
@@ -104,24 +169,24 @@ namespace BAscoop.Controllers
             return View(booking);
         }
 
+        //
         // POST: /Booking/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Booking booking = db.Bookings.Find(id);
-            db.Bookings.Remove(booking);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
-        protected override void Dispose(bool disposing)
+        [HttpPost]
+        public ActionResult Delete(int id)
         {
-            if (disposing)
+            try
             {
-                db.Dispose();
+                Booking booking = db.Bookings.Find(id);
+                db.Bookings.Remove(booking);
+                db.SaveChanges();
             }
-            base.Dispose(disposing);
+            catch (DataException/* dex */)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                return RedirectToAction("Delete", new { id = id, saveChangesError = true });
+            }
+            return RedirectToAction("Index");
         }
     }
 }

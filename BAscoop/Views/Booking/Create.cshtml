@@ -1,4 +1,4 @@
-﻿@model BAscoop.Models.Booking
+﻿@model BAbioscoop.Models.Booking
 
 @{
     ViewBag.Title = "Create";
@@ -6,70 +6,65 @@
 
 <h2>Create</h2>
 
-
-@using (Html.BeginForm()) 
-{
+@using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Booking</h4>
-        <hr />
-        @Html.ValidationSummary(true)
+    @Html.ValidationSummary(true)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.nrOfTickets, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.nrOfTickets)
-                @Html.ValidationMessageFor(model => model.nrOfTickets)
-            </div>
+    <fieldset>
+        <legend>Booking</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.nrOfTickets)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.nrOfTickets)
+            @Html.ValidationMessageFor(model => model.nrOfTickets)
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.accountNumber, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.accountNumber)
-                @Html.ValidationMessageFor(model => model.accountNumber)
-            </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.accountNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.accountNumber)
+            @Html.ValidationMessageFor(model => model.accountNumber)
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.totalPrice, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.totalPrice)
-                @Html.ValidationMessageFor(model => model.totalPrice)
-            </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.totalPrice)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.totalPrice)
+            @Html.ValidationMessageFor(model => model.totalPrice)
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.adres, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.adres)
-                @Html.ValidationMessageFor(model => model.adres)
-            </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.adres)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.adres)
+            @Html.ValidationMessageFor(model => model.adres)
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.city, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.city)
-                @Html.ValidationMessageFor(model => model.city)
-            </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.city)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.city)
+            @Html.ValidationMessageFor(model => model.city)
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.postal, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.postal)
-                @Html.ValidationMessageFor(model => model.postal)
-            </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.postal)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.postal)
+            @Html.ValidationMessageFor(model => model.postal)
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
 }
 
 <div>

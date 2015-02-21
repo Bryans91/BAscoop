@@ -1,4 +1,4 @@
-﻿@model BAscoop.Models.Booking
+﻿@model BAbioscoop.Models.Booking
 
 @{
     ViewBag.Title = "Details";
@@ -6,61 +6,52 @@
 
 <h2>Details</h2>
 
-<div>
-    <h4>Booking</h4>
-	<hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.nrOfTickets)
-        </dt>
+<fieldset>
+    <legend>Booking</legend>
 
-        <dd>
-            @Html.DisplayFor(model => model.nrOfTickets)
-        </dd>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.nrOfTickets)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.nrOfTickets)
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.accountNumber)
-        </dt>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.accountNumber)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.accountNumber)
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.accountNumber)
-        </dd>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.totalPrice)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.totalPrice)
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.totalPrice)
-        </dt>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.adres)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.adres)
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.totalPrice)
-        </dd>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.city)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.city)
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.adres)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.adres)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.city)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.city)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.postal)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.postal)
-        </dd>
-
-    </dl>
-</div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.postal)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.postal)
+    </div>
+</fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

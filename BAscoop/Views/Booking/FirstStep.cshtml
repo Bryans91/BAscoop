@@ -1,0 +1,23 @@
+﻿@model BAbioscoop.Controllers.BookingInformationViewModel
+
+@{
+    ViewBag.Title = "FirstStep";
+}
+
+<h2>FirstStep</h2>
+
+<fieldset>
+    <legend>BookingInformationViewModel</legend>
+
+    @Html.DisplayFor(m => m.Performance.PerformanceId)
+    @Html.DisplayFor(m => m.Performance.StartTijd)
+
+</fieldset>
+
+
+@using (Html.BeginForm("SecondStep", "Booking"))
+{
+    @Html.EditorFor(m => m.AantalMensen)
+    
+    <button type="submit">Volgende step</button>
+}
