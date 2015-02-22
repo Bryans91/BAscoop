@@ -6,6 +6,9 @@ namespace BAscoop.Migrations
     using System.Linq;
     using BAscoop.Models;
     using System.Collections.Generic;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Microsoft.AspNet.Identity;
+    using BAscoop.Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<BAscoop.Models.BioscoopDb>
     {
@@ -69,17 +72,45 @@ namespace BAscoop.Migrations
             context.SaveChanges();
 
             var bookings = new List<Booking>{
-                new Booking { id = 1 , accountNumber = "123456" , adres = "Straat 4", postal = "1234AB", city = "Amsterdam" , nrOfTickets = 4 , totalPrice = 50 , Guest = guests.Single(i => i.id == 1) , Discount = discounts.Single(d => d.id == 1) , Performance = performances.Single(p => p.PerformanceId == 1) },
-                new Booking { id = 2 , accountNumber = "654321" , adres = "Straat 1", postal = "4321AD", city = "Utrecht" , nrOfTickets = 2 , totalPrice = 25 , Guest = guests.Single(i => i.id == 2) , Discount = discounts.Single(d => d.id == 2) , Performance = performances.Single(p => p.PerformanceId == 2) },
-                new Booking { id = 3 , accountNumber = "1234654" , adres = "Straat 2", postal = "1244AC", city = "Den Bosch" , nrOfTickets = 1 , totalPrice = 13 , Guest = guests.Single(i => i.id == 3) , Discount = discounts.Single(d => d.id == 1) , Performance = performances.Single(p => p.PerformanceId == 3) }
+                new Booking { id = 1 , accountNumber = "123456" , adres = "Straat 4", postal = "1234AB", city = "Amsterdam" , nrOfTickets = 4 , totalPrice = 50 , guestId = guests.Single(i => i.id == 1).id , DiscountId = discounts.Single(d => d.id == 1).id , PerformanceId = performances.Single(p => p.PerformanceId == 1).PerformanceId },
+                new Booking { id = 2 , accountNumber = "654321" , adres = "Straat 1", postal = "4321AD", city = "Utrecht" , nrOfTickets = 2 , totalPrice = 25 , guestId = guests.Single(i => i.id == 2).id , DiscountId = discounts.Single(d => d.id == 2).id , PerformanceId = performances.Single(p => p.PerformanceId == 2).PerformanceId },
+                new Booking { id = 3 , accountNumber = "1234654" , adres = "Straat 2", postal = "1244AC", city = "Den Bosch" , nrOfTickets = 1 , totalPrice = 13 , guestId = guests.Single(i => i.id == 3).id , DiscountId = discounts.Single(d => d.id == 1).id , PerformanceId = performances.Single(p => p.PerformanceId == 3).PerformanceId }
             };
             bookings.ForEach(booking => context.Bookings.AddOrUpdate(b => b.id, booking));
             context.SaveChanges();
 
+            userSeed();
         }
 
 
 
+        protected void userSeed()
+        {
+
+            var context = new BAscoop.Models.ApplicationDbContext();
+      
+            if (!context.Roles.Any(r => r.Name == "Admin"))
+            {
+                var store = new RoleStore<IdentityRole>(context);
+                var manager = new RoleManager<IdentityRole>(store);
+                var role = new IdentityRole { Name = "Admin" };
+                manager.Create(role);
+            }
+
+            if (!context.Users.Any(u => u.UserName == "admin"))
+            {
+              
+                var store = new UserStore<ApplicationUser>(context);
+                var manager = new UserManager<ApplicationUser>(store);
+                var user = new ApplicationUser { UserName = "admin" };
+                user.PasswordHash = manager.PasswordHasher.HashPassword("admin");
+                manager.Create(user);  
+                manager.AddToRole(user.Id, "Admin");
+                
+            }
+        }
+
+    
  
     }
 }
