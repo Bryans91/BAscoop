@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Home - BAbioscoop";
+    ViewBag.Title = "Home - BAscoop";
 }
 @model IEnumerable<BAscoop.Models.Movie>
 
@@ -23,7 +23,7 @@
                 </p>
                 <p>
                     <div class="btn-group-md">
-                        @Html.ActionLink("Reserveer nu!", "Create", "Booking", new { id = movie.id }, new { @class = "btn btn-primary" })
+                        @Html.ActionLink("Reserveer nu!", "Details", "Movie", new { id = movie.id }, new { @class = "btn btn-primary" })
                         @Html.ActionLink("Meer details", "Details", "Movie", new { id = movie.id }, new { @class = "btn btn-default" })
                     </div>
                 </p>

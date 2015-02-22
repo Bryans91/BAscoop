@@ -23,6 +23,7 @@ namespace BAscoop.Controllers
             using (var context = new BioscoopDb())
             {
                 vm.Performance = context.PerformanceList.Single(p => p.PerformanceId == performanceId);
+                vm.Movie = context.Movies.Single(p => p.id == vm.Performance.MovieId);
             }
 
             Session["booking"] = vm;
@@ -36,11 +37,12 @@ namespace BAscoop.Controllers
         {
             BookingInformationViewModel oudeVM = Session["booking"] as BookingInformationViewModel;
             oudeVM.AantalMensen = vm.AantalMensen;
+            oudeVM.TotaalPrijs = oudeVM.AantalMensen * oudeVM.Movie.price;
             Session["booking"] = oudeVM;
 
             Booking booking = new Booking();
 
-            return View();
+            return View(oudeVM);
         }
 
         

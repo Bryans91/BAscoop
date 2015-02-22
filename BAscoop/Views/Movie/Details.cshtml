@@ -41,7 +41,18 @@
         <dd>
             @Html.DisplayFor(model => model.duration)
         </dd>
+        <dt>
+            Performances
+        </dt>
 
+        <dd>
+            <ol>
+                @foreach (var p in Model.PerformanceList)
+                {
+                    <li>@p.StartTijd <a href="/Booking/FirstStep?performanceId=@p.PerformanceId">Reserveer</a></li>
+                }
+            </ol>
+        </dd>
     </dl>
 </div>
 <p>

@@ -1,4 +1,4 @@
-﻿@model BAbioscoop.Models.Booking
+﻿@model BAscoop.Models.Booking
 
 @{
     ViewBag.Title = "Details";
@@ -6,52 +6,85 @@
 
 <h2>Details</h2>
 
-<fieldset>
-    <legend>Booking</legend>
+<div>
+    <h4>Booking</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Discount.code)
+        </dt>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.nrOfTickets)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.nrOfTickets)
-    </div>
+        <dd>
+            @Html.DisplayFor(model => model.Discount.code)
+        </dd>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.accountNumber)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.accountNumber)
-    </div>
+        <dt>
+            @Html.DisplayNameFor(model => model.Guest.firstName)
+        </dt>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.totalPrice)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.totalPrice)
-    </div>
+        <dd>
+            @Html.DisplayFor(model => model.Guest.firstName)
+        </dd>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.adres)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.adres)
-    </div>
+        <dt>
+            @Html.DisplayNameFor(model => model.Performance.PerformanceId)
+        </dt>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.city)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.city)
-    </div>
+        <dd>
+            @Html.DisplayFor(model => model.Performance.PerformanceId)
+        </dd>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.postal)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.postal)
-    </div>
-</fieldset>
+        <dt>
+            @Html.DisplayNameFor(model => model.nrOfTickets)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nrOfTickets)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.accountNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.accountNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.totalPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.totalPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.adres)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.adres)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.city)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.city)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.postal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.postal)
+        </dd>
+
+    </dl>
+</div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.id }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>

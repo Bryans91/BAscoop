@@ -10,6 +10,10 @@ namespace BAscoop.Controllers
     {
         public Performance Performance { get; set; }
 
+        public Movie Movie { get; set; }
+
         public int AantalMensen { get; set; }
+
+        public int TotaalPrijs { get; set; }
     }
 }
