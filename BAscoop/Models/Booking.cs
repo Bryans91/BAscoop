@@ -12,10 +12,7 @@ namespace BAscoop.Models
         [Key]
         public int id { get; set; }
         public int nrOfTickets { get; set; }
-        public int totalPrice { get; set; }
-        public string adres { get; set; }
-        public string city { get; set; }
-        public string postal { get; set; }
+        public double totalPrice { get; set; }
 
         [ForeignKey("Guest")]
         public int guestId { get; set; }

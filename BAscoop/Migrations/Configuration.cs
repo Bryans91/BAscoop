@@ -52,11 +52,11 @@ namespace BAscoop.Migrations
             context.SaveChanges();
 
             var guests = new List<Guest>{
-                new Guest { id = 1, firstName = "Alexander", suffix = "van", lastName = "Doorn" },
-                new Guest { id = 2, firstName = "Bryan", suffix = "", lastName = "Schreuder" },
-                new Guest { id = 3, firstName = "Ger", suffix = "", lastName = "Saris" },
-                new Guest { id = 4, firstName = "Jasper", suffix = "van", lastName = "Rosmalen" },
-                new Guest { id = 5, firstName = "Joep", suffix = "van der", lastName = "Broek" }
+                new Guest { id = 1, firstName = "Alexander", suffix = "van", lastName = "Doorn"  , adres = "Straat 4", postal = "1234AG", city = "Oss"},
+                new Guest { id = 2, firstName = "Bryan", suffix = "", lastName = "Schreuder"  , adres = "Straat 1", postal = "4321AD", city = "Utrecht"},
+                new Guest { id = 3, firstName = "Ger", suffix = "", lastName = "Saris" , adres = "Straat 2", postal = "1244AC", city = "Den Bosch"},
+                new Guest { id = 4, firstName = "Jasper", suffix = "van", lastName = "Rosmalen" , adres = "Straat 5", postal = "1245AC", city = "Rosmalen" },
+                new Guest { id = 5, firstName = "Joep", suffix = "van der", lastName = "Broek"  , adres = "Straat 3", postal = "1234AB", city = "Amsterdam"}
             };
             guests.ForEach(guest => context.Guests.AddOrUpdate(g => g.id, guest));
             context.SaveChanges();
@@ -71,9 +71,9 @@ namespace BAscoop.Migrations
             context.SaveChanges();
 
             var bookings = new List<Booking>{
-                new Booking { id = 1 , adres = "Straat 4", postal = "1234AB", city = "Amsterdam" , nrOfTickets = 4 , totalPrice = 50 , guestId = guests.Single(i => i.id == 1).id , DiscountId = discounts.Single(d => d.id == 1).id , PerformanceId = performances.Single(p => p.PerformanceId == 1).PerformanceId },
-                new Booking { id = 2 , adres = "Straat 1", postal = "4321AD", city = "Utrecht" , nrOfTickets = 2 , totalPrice = 25 , guestId = guests.Single(i => i.id == 2).id , DiscountId = discounts.Single(d => d.id == 2).id , PerformanceId = performances.Single(p => p.PerformanceId == 2).PerformanceId },
-                new Booking { id = 3 , adres = "Straat 2", postal = "1244AC", city = "Den Bosch" , nrOfTickets = 1 , totalPrice = 13 , guestId = guests.Single(i => i.id == 3).id , DiscountId = discounts.Single(d => d.id == 1).id , PerformanceId = performances.Single(p => p.PerformanceId == 3).PerformanceId }
+                new Booking { id = 1 , nrOfTickets = 4 , totalPrice = 50 , guestId = guests.Single(i => i.id == 1).id , DiscountId = discounts.Single(d => d.id == 1).id , PerformanceId = performances.Single(p => p.PerformanceId == 1).PerformanceId },
+                new Booking { id = 2 , nrOfTickets = 2 , totalPrice = 25 , guestId = guests.Single(i => i.id == 2).id , DiscountId = discounts.Single(d => d.id == 2).id , PerformanceId = performances.Single(p => p.PerformanceId == 2).PerformanceId },
+                new Booking { id = 3 , nrOfTickets = 1 , totalPrice = 13 , guestId = guests.Single(i => i.id == 3).id , DiscountId = discounts.Single(d => d.id == 1).id , PerformanceId = performances.Single(p => p.PerformanceId == 3).PerformanceId }
             };
             bookings.ForEach(booking => context.Bookings.AddOrUpdate(b => b.id, booking));
             context.SaveChanges();

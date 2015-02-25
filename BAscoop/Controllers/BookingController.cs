@@ -64,8 +64,15 @@ namespace BAscoop.Controllers
             vm.AantalMensen = oudeVM.AantalMensen;
             vm.TotaalPrijs = oudeVM.TotaalPrijs;
             Session["booking"] = oudeVM;
-
             Booking booking = new Booking();
+            using (var context = new BioscoopDb())
+            {
+                Guest guest = context.Guests.Single(p => p.id == (int)1);
+                booking.Guest = guest;
+                booking.nrOfTickets = vm.AantalMensen;
+                booking.totalPrice = vm.TotaalPrijs;
+                context.Bookings.Add(booking);
+            }
 
             return View(oudeVM);
         }

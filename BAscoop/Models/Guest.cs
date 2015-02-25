@@ -13,6 +13,9 @@ namespace BAscoop.Models
         public string firstName { get; set; }
         public string suffix { get; set; }
         public string lastName { get; set; }
+        public string adres { get; set; }
+        public string city { get; set; }
+        public string postal { get; set; }
 
 
     }
