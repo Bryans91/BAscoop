@@ -101,7 +101,7 @@ namespace BAscoop.Migrations
               
                 var store = new UserStore<ApplicationUser>(context);
                 var manager = new UserManager<ApplicationUser>(store);
-                var user = new ApplicationUser { UserName = "admin" };
+                var user = new ApplicationUser { UserName = "admin" , firstName = "Admin", suffix = "van", lastName = "Adminson",adres = "Adminstraat 123", city = "Adminville",postal = "1234AM" };
                 user.PasswordHash = manager.PasswordHasher.HashPassword("admin");
                 manager.Create(user);  
                 manager.AddToRole(user.Id, "Admin");
