@@ -1,0 +1,28 @@
+﻿﻿@model BAscoop.Controllers.BookingInformationViewModel
+
+@{
+    ViewBag.Title = "SecondStep";
+}
+
+<h2>@Html.DisplayFor(m => m.Movie.title) reserveren</h2>
+
+<fieldset>
+    <legend>Stap 2</legend>
+
+    <label>Datum</label>
+    @Html.DisplayFor(m => m.Performance.StartTijd)
+    <br />
+    <label>Aantal tickets</label>
+    @Html.DisplayFor(m => m.AantalMensen)
+    <br />
+
+</fieldset>
+
+
+@using (Html.BeginForm("ThirdStep", "Booking"))
+{
+    <label>Totaalprijs</label>
+    @Html.DisplayFor(m => m.TotaalPrijs)
+
+    <button type="submit">Volgende stap</button>
+}

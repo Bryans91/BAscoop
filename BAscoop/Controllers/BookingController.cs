@@ -62,7 +62,7 @@ namespace BAscoop.Controllers
 
             BookingInformationViewModel vm = Session["booking"] as BookingInformationViewModel;
             vm.AantalMensen = oudeVM.AantalMensen;
-            vm.TotaalPrijs = (vm.AantalMensen * vm.Movie.price) / (vm.Discount.percentage / 100);
+            vm.TotaalPrijs = oudeVM.TotaalPrijs;
             Session["booking"] = oudeVM;
 
             Booking booking = new Booking();
