@@ -18,7 +18,7 @@ namespace BAscoop
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             //Mogelijke fix user migration
-           // Database.SetInitializer<Models.BioscoopDb>(null);
+            Database.SetInitializer<Models.BioscoopDb>(null);
         }
     }
 }
