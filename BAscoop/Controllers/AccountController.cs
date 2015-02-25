@@ -78,7 +78,7 @@ namespace BAscoop.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName };
+                var user = new ApplicationUser() { UserName = model.UserName , firstName = model.firstName , lastName = model.lastName , suffix = model.suffix , adres = model.adres , postal = model.postal , city = model.city };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
