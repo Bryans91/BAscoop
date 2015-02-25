@@ -26,6 +26,18 @@ namespace BAscoop.Models
         [Display(Name = "Confirm new password")]
         [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        public string firstName { get; set; }
+        public string suffix { get; set; }
+        [Required]
+        public string lastName { get; set; }
+        [Required]
+        public string adres { get; set; }
+        [Required]
+        public string city { get; set; }
+        [Required]
+        public string postal { get; set; }
     }
 
     public class LoginViewModel
@@ -59,5 +71,17 @@ namespace BAscoop.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        public string firstName { get; set; }
+        public string suffix { get; set; }
+        [Required]
+        public string lastName { get; set; }
+        [Required]
+        public string adres { get; set; }
+        [Required]
+        public string city { get; set; }
+        [Required]
+        public string postal { get; set; }
     }
 }
