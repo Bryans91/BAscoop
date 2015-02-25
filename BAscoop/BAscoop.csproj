@@ -288,6 +288,7 @@
     <Content Include="Views\Guest\Details.cshtml" />
     <Content Include="Views\Guest\Edit.cshtml" />
     <Content Include="Views\Guest\Index.cshtml" />
+    <Content Include="Views\Booking\ThirdStep.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

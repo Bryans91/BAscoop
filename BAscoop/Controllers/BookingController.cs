@@ -18,12 +18,10 @@ namespace BAscoop.Controllers
         {
             BookingInformationViewModel vm = new BookingInformationViewModel();
 
-            using (var context = new BioscoopDb())
-            {
-                vm.Performance = context.PerformanceList.Single(p => p.PerformanceId == performanceId);
-                vm.Movie = context.Movies.Single(p => p.id == vm.Performance.MovieId);
-                vm.Discount = context.Discounts.Single(p => p.id == vm.Performance.MovieId);
-            }
+            //vm.Performance = db.PerformanceList.Single(p => p.PerformanceId == performanceId);
+            //vm.Movie = db.Movies.Single(p => p.id == vm.Performance.MovieId);
+            vm.Performance = db.PerformanceList.Find(performanceId);
+            vm.Movie = db.Movies.Find(vm.Performance.MovieId);
 
             Session["booking"] = vm;
 
@@ -36,23 +34,17 @@ namespace BAscoop.Controllers
         {
             BookingInformationViewModel vm = Session["booking"] as BookingInformationViewModel;
             vm.AantalMensen = oudeVM.AantalMensen;
-            using (var context = new BioscoopDb())
+            if (oudeVM.Discountcode != null && db.Discounts.Single(d => d.code == oudeVM.Discountcode) != null)
             {
-                if (oudeVM.Discountcode != null && context.Discounts.Single(p => p.code == oudeVM.Discountcode) != null)
-                {
-                    vm.Discount = context.Discounts.Single(p => p.code == oudeVM.Discountcode);
-                    vm.TotaalPrijs = ((double)vm.AantalMensen * (double)vm.Movie.price) * ((double)(100 - vm.Discount.percentage) / (double)100);
-                }
-                else
-                {
-                    vm.TotaalPrijs = (double)vm.AantalMensen * (double)vm.Movie.price;
-                }
+                vm.Discount = db.Discounts.Single(d => d.code == oudeVM.Discountcode);
+                vm.TotaalPrijs = ((double)vm.AantalMensen * (double)vm.Movie.price) * ((double)(100 - vm.Discount.percentage) / (double)100);
+            }
+            else
+            {
+                vm.TotaalPrijs = (double)vm.AantalMensen * (double)vm.Movie.price;
             }
             Session["booking"] = vm;
 
-            Booking booking = new Booking();
-
-            ViewBag.DiscountId = new SelectList(db.Discounts, "id", "code", booking.DiscountId);
             return View(vm);
         }
 
@@ -61,20 +53,25 @@ namespace BAscoop.Controllers
         {
 
             BookingInformationViewModel vm = Session["booking"] as BookingInformationViewModel;
-            vm.AantalMensen = oudeVM.AantalMensen;
-            vm.TotaalPrijs = oudeVM.TotaalPrijs;
-            Session["booking"] = oudeVM;
+            Session["booking"] = vm;
             Booking booking = new Booking();
-            using (var context = new BioscoopDb())
+            booking.Guest = db.Guests.Single(p => p.id == (int)1);
+            vm.Guest = booking.Guest;
+            booking.nrOfTickets = vm.AantalMensen;
+            booking.totalPrice = vm.TotaalPrijs;
+            booking.Performance = vm.Performance;
+            if (vm.Discount != null)
             {
-                Guest guest = context.Guests.Single(p => p.id == (int)1);
-                booking.Guest = guest;
-                booking.nrOfTickets = vm.AantalMensen;
-                booking.totalPrice = vm.TotaalPrijs;
-                context.Bookings.Add(booking);
+                booking.Discount = vm.Discount;
             }
-
-            return View(oudeVM);
+            else
+            {
+                booking.Discount = db.Discounts.Single(p => p.id == (int)1);
+            }
+            vm.Discount = booking.Discount;
+            booking = db.Bookings.Add(booking);
+            db.SaveChanges();
+            return View(vm);
         }
 
         // GET: /Booking/
@@ -113,7 +110,7 @@ namespace BAscoop.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="id,nrOfTickets,totalPrice,guestId,DiscountId,PerformanceId")] Booking booking)
+        public ActionResult Create([Bind(Include = "id,nrOfTickets,totalPrice,guestId,DiscountId,PerformanceId")] Booking booking)
         {
             if (ModelState.IsValid)
             {
@@ -151,7 +148,7 @@ namespace BAscoop.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="id,nrOfTickets,totalPrice,guestId,DiscountId,PerformanceId")] Booking booking)
+        public ActionResult Edit([Bind(Include = "id,nrOfTickets,totalPrice,guestId,DiscountId,PerformanceId")] Booking booking)
         {
             if (ModelState.IsValid)
             {

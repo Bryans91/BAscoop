@@ -1,0 +1,33 @@
+﻿﻿@model BAscoop.Controllers.BookingInformationViewModel
+
+@{
+    ViewBag.Title = "ThirdStep";
+}
+
+<h2>@Html.DisplayFor(m => m.Movie.title) reserveren</h2>
+
+<fieldset>
+    <legend>Einde</legend>
+
+    <label>Film</label>
+    @Html.DisplayFor(m => m.Performance.Movie.title)
+    <br />
+    <label>Datum</label>
+    @Html.DisplayFor(m => m.Performance.StartTijd)
+    <br />
+    <label>Aantal tickets</label>
+    @Html.DisplayFor(m => m.AantalMensen)
+    <br />
+    <label>Percentage korting</label>
+    @Html.DisplayFor(m => m.Discount.percentage)
+    <br />
+    <label>Onder naam van</label>
+    @Html.DisplayFor(m => m.Guest.firstName) 
+    @Html.DisplayFor(m => m.Guest.suffix) 
+    @Html.DisplayFor(m => m.Guest.lastName)
+    <br />
+    <label>Totaalprijs</label>
+    @Html.DisplayFor(m => m.TotaalPrijs)
+    <br />
+
+</fieldset>
