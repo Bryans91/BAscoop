@@ -207,10 +207,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\aspnet-BAscoop-20150221042431.mdf" />
-    <Content Include="App_Data\aspnet-BAscoop-20150221042431_log.ldf">
-      <DependentUpon>aspnet-BAscoop-20150221042431.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -294,7 +290,9 @@
     <Content Include="Views\Guest\Index.cshtml" />
     <Content Include="Views\Booking\ThirdStep.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
