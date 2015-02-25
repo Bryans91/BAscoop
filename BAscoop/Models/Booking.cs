@@ -12,7 +12,6 @@ namespace BAscoop.Models
         [Key]
         public int id { get; set; }
         public int nrOfTickets { get; set; }
-        public string accountNumber { get; set; }
         public int totalPrice { get; set; }
         public string adres { get; set; }
         public string city { get; set; }

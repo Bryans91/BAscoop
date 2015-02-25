@@ -14,6 +14,10 @@ namespace BAscoop.Controllers
 
         public int AantalMensen { get; set; }
 
-        public int TotaalPrijs { get; set; }
+        public double TotaalPrijs { get; set; }
+
+        public Discount Discount { get; set; }
+
+        public string Discountcode { get; set; }
     }
 }
