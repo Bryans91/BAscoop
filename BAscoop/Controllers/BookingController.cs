@@ -45,7 +45,7 @@ namespace BAscoop.Controllers
                 }
                 else
                 {
-                    vm.TotaalPrijs = (double) vm.AantalMensen * (double) vm.Movie.price;
+                    vm.TotaalPrijs = (double)vm.AantalMensen * (double)vm.Movie.price;
                 }
             }
             Session["booking"] = vm;
@@ -113,7 +113,7 @@ namespace BAscoop.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="id,nrOfTickets,totalPrice,adres,city,postal,guestId,DiscountId,PerformanceId")] Booking booking)
+        public ActionResult Create([Bind(Include="id,nrOfTickets,totalPrice,guestId,DiscountId,PerformanceId")] Booking booking)
         {
             if (ModelState.IsValid)
             {
@@ -151,7 +151,7 @@ namespace BAscoop.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="id,nrOfTickets,totalPrice,adres,city,postal,guestId,DiscountId,PerformanceId")] Booking booking)
+        public ActionResult Edit([Bind(Include="id,nrOfTickets,totalPrice,guestId,DiscountId,PerformanceId")] Booking booking)
         {
             if (ModelState.IsValid)
             {

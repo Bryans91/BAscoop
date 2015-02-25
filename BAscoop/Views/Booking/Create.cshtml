@@ -6,7 +6,6 @@
 
 <h2>Create</h2>
 
-
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
@@ -29,30 +28,6 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.totalPrice)
                 @Html.ValidationMessageFor(model => model.totalPrice)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.adres, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.adres)
-                @Html.ValidationMessageFor(model => model.adres)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.city, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.city)
-                @Html.ValidationMessageFor(model => model.city)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.postal, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.postal)
-                @Html.ValidationMessageFor(model => model.postal)
             </div>
         </div>
 
@@ -91,7 +66,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
