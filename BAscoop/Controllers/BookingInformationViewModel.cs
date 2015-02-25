@@ -19,5 +19,7 @@ namespace BAscoop.Controllers
         public Discount Discount { get; set; }
 
         public string Discountcode { get; set; }
+
+        public Guest Guest { get; set; }
     }
 }
