@@ -13,7 +13,8 @@ namespace BAscoop.Controllers
     public class BookingController : Controller
     {
         private BioscoopDb db = new BioscoopDb();
-
+        
+        [Authorize]
         public ActionResult FirstStep(int performanceId)
         {
             BookingInformationViewModel vm = new BookingInformationViewModel();
@@ -30,6 +31,7 @@ namespace BAscoop.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult SecondStep(BookingInformationViewModel oudeVM)
         {
             BookingInformationViewModel vm = Session["booking"] as BookingInformationViewModel;
@@ -61,6 +63,7 @@ namespace BAscoop.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public ActionResult ThirdStep(BookingInformationViewModel oudeVM)
         {
             BookingInformationViewModel vm = Session["booking"] as BookingInformationViewModel;
@@ -86,6 +89,7 @@ namespace BAscoop.Controllers
         }
 
         // GET: /Booking/
+        [Authorize]
         public ActionResult Index()
         {
             var bookings = db.Bookings.Include(b => b.Discount).Include(b => b.Guest).Include(b => b.Performance);
@@ -93,6 +97,7 @@ namespace BAscoop.Controllers
         }
 
         // GET: /Booking/Details/5
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -137,6 +142,7 @@ namespace BAscoop.Controllers
         }
 
         // GET: /Booking/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -158,6 +164,7 @@ namespace BAscoop.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,nrOfTickets,totalPrice,guestId,DiscountId,PerformanceId")] Booking booking)
         {
@@ -174,6 +181,7 @@ namespace BAscoop.Controllers
         }
 
         // GET: /Booking/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -190,6 +198,7 @@ namespace BAscoop.Controllers
 
         // POST: /Booking/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

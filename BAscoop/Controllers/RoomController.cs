@@ -15,6 +15,7 @@ namespace BAscoop.Controllers
         private BioscoopDb db = new BioscoopDb();
 
         // GET: /Room/
+
         public ActionResult Index()
         {
             return View(db.Rooms.ToList());
@@ -36,6 +37,7 @@ namespace BAscoop.Controllers
         }
 
         // GET: /Room/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -46,6 +48,7 @@ namespace BAscoop.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include="id,number,capacity,name")] Cinemaroom cinemaroom)
         {
             if (ModelState.IsValid)
@@ -59,6 +62,7 @@ namespace BAscoop.Controllers
         }
 
         // GET: /Room/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -77,6 +81,7 @@ namespace BAscoop.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include="id,number,capacity,name")] Cinemaroom cinemaroom)
         {
@@ -90,6 +95,7 @@ namespace BAscoop.Controllers
         }
 
         // GET: /Room/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -107,6 +113,7 @@ namespace BAscoop.Controllers
         // POST: /Room/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Cinemaroom cinemaroom = db.Rooms.Find(id);
