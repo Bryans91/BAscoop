@@ -15,14 +15,14 @@ namespace BAscoop.Controllers
         private BioscoopDb db = new BioscoopDb();
 
         // GET: /Discount/
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         public ActionResult Index()
         {
             return View(db.Discounts.ToList());
         }
 
         // GET: /Discount/Details/5
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         public ActionResult Details(int? id)
         {
             if (id == null)
