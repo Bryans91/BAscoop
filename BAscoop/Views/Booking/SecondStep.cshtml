@@ -23,6 +23,36 @@
 {
     <label>Totaalprijs</label>
     @Html.DisplayFor(m => m.TotaalPrijs)
+    <br/>
+    
+    <label>@Html.DisplayNameFor(m => m.Guest.firstName)</label>
+    @Html.EditorFor(m => m.Guest.firstName)
+    <br />
+     <label>
+         @Html.DisplayNameFor(m => m.Guest.suffix)
+    </label>
+    @Html.EditorFor(m => m.Guest.suffix)
+    <br />
+    <label>
+         @Html.DisplayNameFor(m => m.Guest.lastName)
+    </label>
+    @Html.EditorFor(m => m.Guest.lastName)
+    <br />
+    <label>
+         @Html.DisplayNameFor(m => m.Guest.adres)
+    </label>
+    @Html.EditorFor(m => m.Guest.adres)
+    <br />
+    <label>
+         @Html.DisplayNameFor(m => m.Guest.city)
+    </label>
+    @Html.EditorFor(m => m.Guest.city)
+    <br />
+    <label>
+         @Html.DisplayNameFor(m => m.Guest.postal)
+    </label>
+    @Html.EditorFor(m => m.Guest.postal)
+    <br />
 
-    <button type="submit">Volgende stap</button>
+                     <button type="submit">Volgende stap</button>
 }
