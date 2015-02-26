@@ -46,9 +46,9 @@ namespace BAscoop.Controllers
             {
                 return View("Error");
             }
-            if (oudeVM.Discountcode != null && db.Discounts.Single(d => d.code == oudeVM.Discountcode) != null)
+            if (oudeVM.Discountcode != null && db.Discounts.Where(d => d.code == oudeVM.Discountcode).First() != null && db.Discounts.Where(d => d.code == oudeVM.Discountcode).First().StartTijd >= DateTime.Now && db.Discounts.Where(d => d.code == oudeVM.Discountcode).First().endDate <= DateTime.Now)
             {
-                vm.Discount = db.Discounts.Single(d => d.code == oudeVM.Discountcode);
+                vm.Discount = db.Discounts.Where(d => d.code == oudeVM.Discountcode).First();
                 vm.TotaalPrijs = ((double)vm.AantalMensen * (double)vm.Movie.price) * ((double)(100 - vm.Discount.percentage) / (double)100);
             }
             else
@@ -83,11 +83,11 @@ namespace BAscoop.Controllers
             booking.PerformanceId = vm.Performance.PerformanceId;
             if (vm.Discount != null)
             {
-                booking.Discount = vm.Discount;
+                booking.DiscountId = vm.Discount.id;
             }
             else
             {
-                booking.Discount = db.Discounts.Single(p => p.id == (int)1);
+                booking.DiscountId = (int)1;
             }
             vm.Discount = booking.Discount;
             booking = db.Bookings.Add(booking);
