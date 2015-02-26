@@ -21,7 +21,7 @@ namespace BAscoop.Controllers
             //vm.Performance = db.PerformanceList.Single(p => p.PerformanceId == performanceId);
             //vm.Movie = db.Movies.Single(p => p.id == vm.Performance.MovieId);
             vm.Performance = db.PerformanceList.Find(performanceId);
-            vm.Movie = db.Movies.Find(vm.Performance.MovieId);
+            vm.Movie = vm.Performance.Movie;
 
             Session["booking"] = vm;
 
@@ -59,7 +59,7 @@ namespace BAscoop.Controllers
             vm.Guest = booking.Guest;
             booking.nrOfTickets = vm.AantalMensen;
             booking.totalPrice = vm.TotaalPrijs;
-            booking.Performance = vm.Performance;
+            booking.PerformanceId = vm.Performance.PerformanceId;
             if (vm.Discount != null)
             {
                 booking.Discount = vm.Discount;
