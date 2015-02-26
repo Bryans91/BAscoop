@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 
 namespace BAscoop.Models
 {
@@ -24,6 +25,8 @@ namespace BAscoop.Models
         public ApplicationDbContext()
             : base("DefaultConnection")
         {
+           Database.SetInitializer<ApplicationDbContext>(new DropCreateDatabaseIfModelChanges<ApplicationDbContext>());
         }
+
     }
 }

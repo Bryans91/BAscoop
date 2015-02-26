@@ -193,6 +193,10 @@
     <Compile Include="Migrations\201502251838504_NAWtoGuest.Designer.cs">
       <DependentUpon>201502251838504_NAWtoGuest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201502252013279_Empty.cs" />
+    <Compile Include="Migrations\201502252013279_Empty.Designer.cs">
+      <DependentUpon>201502252013279_Empty.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\BioscoopDb.cs" />
@@ -288,6 +292,7 @@
     <Content Include="Views\Guest\Details.cshtml" />
     <Content Include="Views\Guest\Edit.cshtml" />
     <Content Include="Views\Guest\Index.cshtml" />
+    <Content Include="Views\Account\_ChangeNawPartial.cshtml" />
     <Content Include="Views\Booking\ThirdStep.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -315,6 +320,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201502251838504_NAWtoGuest.resx">
       <DependentUpon>201502251838504_NAWtoGuest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502252013279_Empty.resx">
+      <DependentUpon>201502252013279_Empty.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
