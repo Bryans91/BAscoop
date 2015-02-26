@@ -34,8 +34,9 @@ namespace BAscoop.Migrations
 
 
             var discounts = new List<Discount>{
-                new Discount {id = 1, code = "januari" , percentage = 20 ,  StartTijd = new DateTime(2015,1,1) , endDate = new DateTime(2015,2,1) },
-                new Discount { id = 2, code = "now", percentage = 40, StartTijd = DateTime.Today, endDate = new DateTime(2016, 2, 1) }
+                new Discount {id = 1, code = "geen" , percentage = 0 ,  StartTijd = new DateTime(2000,1,1) , endDate = new DateTime(2080,1,1) },
+                new Discount { id = 2, code = "now", percentage = 40, StartTijd = DateTime.Today, endDate = new DateTime(2016, 2, 1) },
+                new Discount {id = 3, code = "januari" , percentage = 20 ,  StartTijd = new DateTime(2015,1,1) , endDate = new DateTime(2015,2,1) }
             };
             discounts.ForEach(disc => context.Discounts.AddOrUpdate(d => d.id, disc));
             context.SaveChanges();
