@@ -37,6 +37,7 @@ namespace BAscoop.Controllers
         }
 
         // GET: /Performance/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             ViewBag.CinemaroomId = new SelectList(db.Rooms, "id", "name");
@@ -49,6 +50,7 @@ namespace BAscoop.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include="PerformanceId,StartTijd,MovieId,CinemaroomId")] Performance performance)
         {
             if (ModelState.IsValid)
@@ -64,6 +66,7 @@ namespace BAscoop.Controllers
         }
 
         // GET: /Performance/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -85,6 +88,7 @@ namespace BAscoop.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include="PerformanceId,StartTijd,MovieId,CinemaroomId")] Performance performance)
         {
             if (ModelState.IsValid)
@@ -99,6 +103,7 @@ namespace BAscoop.Controllers
         }
 
         // GET: /Performance/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

@@ -15,12 +15,14 @@ namespace BAscoop.Controllers
         private BioscoopDb db = new BioscoopDb();
 
         // GET: /Guest/
+        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View(db.Guests.ToList());
         }
 
         // GET: /Guest/Details/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -59,6 +61,7 @@ namespace BAscoop.Controllers
         }
 
         // GET: /Guest/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -78,6 +81,7 @@ namespace BAscoop.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include="id,firstName,suffix,lastName,adres,city,postal")] Guest guest)
         {
             if (ModelState.IsValid)
@@ -90,6 +94,7 @@ namespace BAscoop.Controllers
         }
 
         // GET: /Guest/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -106,6 +111,7 @@ namespace BAscoop.Controllers
 
         // POST: /Guest/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
