@@ -13,8 +13,7 @@ namespace BAscoop.Controllers
     public class BookingController : Controller
     {
         private BioscoopDb db = new BioscoopDb();
-        
-        [Authorize]
+       
         public ActionResult FirstStep(int performanceId)
         {
             BookingInformationViewModel vm = new BookingInformationViewModel();
@@ -31,7 +30,6 @@ namespace BAscoop.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         public ActionResult SecondStep(BookingInformationViewModel oudeVM)
         {
             BookingInformationViewModel vm = Session["booking"] as BookingInformationViewModel;
@@ -63,7 +61,6 @@ namespace BAscoop.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         public ActionResult ThirdStep(BookingInformationViewModel oudeVM)
         {
             BookingInformationViewModel vm = Session["booking"] as BookingInformationViewModel;

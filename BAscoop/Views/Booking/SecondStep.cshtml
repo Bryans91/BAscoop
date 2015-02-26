@@ -21,38 +21,65 @@
 
 @using (Html.BeginForm("ThirdStep", "Booking"))
 {
-    <label>Totaalprijs</label>
-    @Html.DisplayFor(m => m.TotaalPrijs)
-    <br/>
-    
-    <label>@Html.DisplayNameFor(m => m.Guest.firstName)</label>
-    @Html.EditorFor(m => m.Guest.firstName)
-    <br />
-     <label>
-         @Html.DisplayNameFor(m => m.Guest.suffix)
-    </label>
-    @Html.EditorFor(m => m.Guest.suffix)
-    <br />
-    <label>
-         @Html.DisplayNameFor(m => m.Guest.lastName)
-    </label>
-    @Html.EditorFor(m => m.Guest.lastName)
-    <br />
-    <label>
-         @Html.DisplayNameFor(m => m.Guest.adres)
-    </label>
-    @Html.EditorFor(m => m.Guest.adres)
-    <br />
-    <label>
-         @Html.DisplayNameFor(m => m.Guest.city)
-    </label>
-    @Html.EditorFor(m => m.Guest.city)
-    <br />
-    <label>
-         @Html.DisplayNameFor(m => m.Guest.postal)
-    </label>
-    @Html.EditorFor(m => m.Guest.postal)
-    <br />
+    <div class="form-horizontal">
+        <h4>NAW</h4>
+        <hr />
+        @Html.ValidationSummary(true)
 
-                     <button type="submit">Volgende stap</button>
+        <div class="form-group">
+            @Html.LabelFor(model =>  model.Guest.firstName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model =>  model.Guest.firstName)
+                @Html.ValidationMessageFor(model => model.Guest.firstName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Guest.suffix, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Guest.suffix)
+                @Html.ValidationMessageFor(model => model.Guest.suffix)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Guest.lastName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Guest.lastName)
+                @Html.ValidationMessageFor(model => model.Guest.lastName)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Guest.adres, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Guest.adres)
+                @Html.ValidationMessageFor(model => model.Guest.adres)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Guest.city, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Guest.city)
+                @Html.ValidationMessageFor(model => model.Guest.city)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Guest.postal, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Guest.postal)
+                @Html.ValidationMessageFor(model => model.Guest.postal)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <button type="submit">Volgende stap</button>
+            </div>
+        </div>
+    </div>
+
+                    
 }
