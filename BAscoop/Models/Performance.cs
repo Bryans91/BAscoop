@@ -23,7 +23,9 @@ namespace BAscoop.Models
         [ForeignKey("Cinemaroom")]
         public int CinemaroomId { get; set; }
 
-        public virtual Cinemaroom Cinemaroom {get; set;}
+        public virtual Cinemaroom Cinemaroom { get; set; }
+
+        public virtual List<Booking> BookingList { get; set; }
 
     }
 }

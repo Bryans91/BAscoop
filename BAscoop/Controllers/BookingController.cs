@@ -33,7 +33,19 @@ namespace BAscoop.Controllers
         public ActionResult SecondStep(BookingInformationViewModel oudeVM)
         {
             BookingInformationViewModel vm = Session["booking"] as BookingInformationViewModel;
-            vm.AantalMensen = oudeVM.AantalMensen;
+            int counter = 0;
+            int maxPersons = db.Rooms.Find(vm.Performance.CinemaroomId).capacity; 
+            foreach(Booking b in db.PerformanceList.Find(vm.Performance.PerformanceId).BookingList) {
+                counter += b.nrOfTickets;
+            }
+            if (counter + oudeVM.AantalMensen <= maxPersons)
+            {
+                vm.AantalMensen = oudeVM.AantalMensen;
+            }
+            else
+            {
+                return View("Error");
+            }
             if (oudeVM.Discountcode != null && db.Discounts.Single(d => d.code == oudeVM.Discountcode) != null)
             {
                 vm.Discount = db.Discounts.Single(d => d.code == oudeVM.Discountcode);
@@ -51,7 +63,6 @@ namespace BAscoop.Controllers
         [HttpPost]
         public ActionResult ThirdStep(BookingInformationViewModel oudeVM)
         {
-
             BookingInformationViewModel vm = Session["booking"] as BookingInformationViewModel;
             Session["booking"] = vm;
             Booking booking = new Booking();
